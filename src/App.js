@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Fragment, useState } from "react";
+import { Button, ButtonGroup } from "react-bootstrap";
+import "./App.css";
+import Doctors from "./containers/Doctors";
+import Reservations from "./containers/Reservations";
+import Rooms from "./containers/Rooms";
 
 function App() {
+  const [step, setStep] = useState("doctors");
+  const [doctors, setDoctors] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const [reservations, setReservations] = useState([]);
+
+  const changeStep = (newStep) => {
+    setStep(newStep);
+  };
+
+  const addDoctor = (doctor) => {
+    setDoctors((doctors) => [...doctors, doctor]);
+  };
+
+  const addRoom = (room) => {
+    setRooms((rooms) => [...rooms, room]);
+  };
+
+  const addReservation = (reservation) => {
+    setReservations((reservations) => [...reservations, reservation]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Fragment>
+      <ButtonGroup className="buttons">
+        <Button variant="outline-info" onClick={() => changeStep("rooms")}>
+          Ir para salas
+        </Button>
+        <Button variant="outline-info" onClick={() => changeStep("doctors")}>
+          Ir para médicos
+        </Button>
+        <Button
+          variant="outline-info"
+          onClick={() => changeStep("reservations")}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Ir para reservas
+        </Button>
+      </ButtonGroup>
+
+      {step === "doctors" && (
+        <Doctors doctors={doctors} handleSubmit={addDoctor} />
+      )}
+      {step === "rooms" && <Rooms rooms={rooms} handleSubmit={addRoom} />}
+      {step === "reservations" && (
+        <Reservations
+          reservations={reservations}
+          doctors={doctors}
+          rooms={rooms}
+          handleSubmit={addReservation}
+        />
+      )}
+    </Fragment>
   );
 }
 
