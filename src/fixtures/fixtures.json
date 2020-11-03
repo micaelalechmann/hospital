@@ -1,0 +1,93 @@
+{
+  "doctors": [
+    {
+      "name": "Eduardo",
+      "crm": 12345,
+      "specialty": "Cirurgia cardiovascular"
+    },
+    {
+      "name": "Pedro Henrique",
+      "crm": 98765,
+      "specialty": "Cirurgia neurológica"
+    },
+    {
+      "name": "Patrick",
+      "crm": 92345,
+      "specialty": "Dermatologista"
+    },
+    {
+      "name": "Bruna",
+      "crm": 63784,
+      "specialty": "Cirurgia cardiovascular"
+    },
+    {
+      "name": "Cristina",
+      "crm": 39484,
+      "specialty": "Dermatologista"
+    },
+    {
+      "name": "Rosângela",
+      "crm": 12983,
+      "specialty": "Cirurgia neurológica"
+    },
+    {
+      "name": "Roberto",
+      "crm": 54875,
+      "specialty": "Cirurgia neurológica"
+    },
+    {
+      "name": "Juliano",
+      "crm": 92308,
+      "specialty": "Dermatologista"
+    },
+    {
+      "name": "Raissa",
+      "crm": 59435,
+      "specialty": "Dermatologista"
+    },
+    {
+      "name": "Gabriel",
+      "crm": 23480,
+      "specialty": "Cirurgia cardiovascular"
+    },
+    {
+      "name": "Jordana",
+      "crm": 29403,
+      "specialty": "Cirurgia cardiovascular"
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Sala 1",
+      "type": "Pequena"
+    },
+    {
+      "name": "Sala 2",
+      "type": "Pequena"
+    },
+    {
+      "name": "Sala 3",
+      "type": "Pequena"
+    },
+    {
+      "name": "Sala 4",
+      "type": "Grande"
+    },
+    {
+      "name": "Sala 5",
+      "type": "Grande"
+    },
+    {
+      "name": "Sala 6",
+      "type": "Grande"
+    },
+    {
+      "name": "Sala 7",
+      "type": "Alto risco"
+    },
+    {
+      "name": "Sala 8",
+      "type": "Alto risco"
+    }
+  ]
+}
