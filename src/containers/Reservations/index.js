@@ -246,7 +246,7 @@ function Reservations({
         </Modal.Footer>
       </Modal>
 
-      <Table className="table" striped bordered hover>
+      <Table data-testid="reservation-table" className="table" striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
