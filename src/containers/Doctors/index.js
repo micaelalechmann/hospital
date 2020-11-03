@@ -7,7 +7,7 @@ import { SPECIALTIES } from "../../constants";
 
 function Doctors({ doctors, handleSubmit, allocations, reservations, prices }) {
   const [name, setName] = useState("");
-  const [crm, setCrm] = useState();
+  const [crm, setCrm] = useState("");
   const [specialty, setSpecialty] = useState(SPECIALTIES[0]);
   const [show, setShow] = useState(false);
 
@@ -47,7 +47,7 @@ function Doctors({ doctors, handleSubmit, allocations, reservations, prices }) {
       return;
     }
 
-    const isUniqueCRM = !doctors.some((doctor) => doctor.crm === crm);
+    const isUniqueCRM = !doctors.some((doctor) => doctor.crm === parseInt(crm));
 
     if (!isUniqueCRM) {
       addErrorNotification(`Já existe um médico com o CRM ${crm}`);
@@ -101,8 +101,8 @@ function Doctors({ doctors, handleSubmit, allocations, reservations, prices }) {
                 onChange={({ target }) => setSpecialty(target.value)}
                 placeholder="Especialidade"
               >
-                {SPECIALTIES.map((type) => (
-                  <option>{type}</option>
+                {SPECIALTIES.map((type, i) => (
+                  <option key={i}>{type}</option>
                 ))}
               </Form.Control>
             </Form.Group>
@@ -136,7 +136,7 @@ function Doctors({ doctors, handleSubmit, allocations, reservations, prices }) {
         <tbody>
           {doctors.map(({ name, crm, specialty }, i) => {
             return (
-              <tr>
+              <tr key={i}>
                 <td>{i + 1}</td>
                 <td>{name}</td>
                 <td>{crm}</td>

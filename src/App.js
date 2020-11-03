@@ -27,25 +27,27 @@ export const addErrorNotification = (message) => {
   });
 };
 
+export const INITIAL_PRICES = [
+  {
+    type: "Pequena",
+    price: 400,
+  },
+  {
+    type: "Grande",
+    price: 650,
+  },
+  {
+    type: "Alto risco",
+    price: 1200,
+  },
+];
+
 function App() {
   const [doctors, setDoctors] = useState(fixtures.doctors);
   const [rooms, setRooms] = useState(fixtures.rooms);
   const [reservations, setReservations] = useState([]);
   const [filteredAllocations, setFilteredAllocations] = useState([]);
-  const [prices, setPrices] = useState([
-    {
-      type: "Pequena",
-      price: 400,
-    },
-    {
-      type: "Grande",
-      price: 650,
-    },
-    {
-      type: "Alto risco",
-      price: 1200,
-    },
-  ]);
+  const [prices, setPrices] = useState(INITIAL_PRICES);
 
   const addDoctor = (doctor) => {
     setDoctors((doctors) => [...doctors, doctor]);

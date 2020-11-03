@@ -29,10 +29,10 @@ function Reservations({
   handleCancel,
 }) {
   const [doctor, setDoctor] = useState(doctors[0]);
-  const [room, setRoom] = useState();
-  const [enterTime, setEnterTime] = useState();
-  const [exitTime, setExitTime] = useState();
-  const [date, setDate] = useState();
+  const [room, setRoom] = useState(rooms[0]);
+  const [enterTime, setEnterTime] = useState("");
+  const [exitTime, setExitTime] = useState("");
+  const [date, setDate] = useState("");
   const [show, setShow] = useState(false);
 
   const availableRooms = useMemo(() => {
@@ -114,7 +114,7 @@ function Reservations({
       const differenceBetweenTimes = differenceInHours(exitDate, enterDate);
 
       if (room.type === "Alto risco" && differenceBetweenTimes < 3) {
-        addErrorNotification("O mínimo para salas de alto risco é de 3 horas");
+        addErrorNotification("O mínimo para reserva de salas de alto risco é de 3 horas");
         return;
       } else if (room.type !== "Alto risco" && differenceBetweenTimes < 2) {
         addErrorNotification("O mínimo para reserva é de 2 horas");
@@ -152,7 +152,7 @@ function Reservations({
     <Fragment>
       <Button
         variant="primary"
-        data-testid="add-reservation"
+        data-testid="new-reservation"
         onClick={() => setShow(true)}
       >
         Adicionar reserva
@@ -175,8 +175,8 @@ function Reservations({
                 }
                 placeholder="Sala"
               >
-                {availableRooms.map(({ name }) => (
-                  <option>{name}</option>
+                {availableRooms.map(({ name }, i) => (
+                  <option key={i}>{name}</option>
                 ))}
               </Form.Control>
               <Form.Label>Médico</Form.Label>
@@ -189,8 +189,8 @@ function Reservations({
                 }
                 placeholder="Médico"
               >
-                {doctors.map(({ name }) => (
-                  <option>{name}</option>
+                {doctors.map(({ name }, i) => (
+                  <option key={i}>{name}</option>
                 ))}
               </Form.Control>
 
@@ -264,18 +264,19 @@ function Reservations({
             .filter(({ interval }) => isAfter(interval.start, new Date()))
             .map(({ room, doctor, date, interval }, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{room.name}</td>
                   <td>{doctor.name}</td>
                   <td>{date}</td>
                   <td>{format(interval.start, "HH:mm")}</td>
                   <td>{format(interval.end, "HH:mm")}</td>
-                  <td>{totalPrice({ room, interval })}</td>
+                  <td data-testid={`bugdet-${i}`}>{totalPrice({ room, interval })}</td>
                   <td>
                     <Button
                       size="sm"
                       variant="danger"
+                      data-testid={`cancel-${i}`}
                       onClick={() => handleCancel(i)}
                     >
                       Cancelar reserva
